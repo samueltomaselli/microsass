@@ -19,7 +19,7 @@ export default function LoginForm() {
     event.preventDefault();
     const formData = new FormData(event.target);
     const response = await login(formData);
-    if (response.error) {
+    if (response?.error) {
       setError(response.error);
     } else {
       setError("");

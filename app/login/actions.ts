@@ -10,6 +10,7 @@ import { eq } from "drizzle-orm";
 
 export async function login(formData: FormData) {
   const username = formData.get("username");
+
   if (
     typeof username !== "string" ||
     username.length < 3 ||
@@ -26,6 +27,10 @@ export async function login(formData: FormData) {
       error: "Nome ou senha inválidos",
     };
   }
+
+  console.log("ai");
+
+  console.log(userTable.user, username.toLowerCase());
 
   const existingUser = await db.query.userTable.findFirst({
     where: eq(userTable.user, username.toLowerCase()),
