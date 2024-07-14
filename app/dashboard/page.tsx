@@ -118,8 +118,8 @@ export default async function Dashboard() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {appointments.slice(0, 5).map((appointments) => (
-                        <TableRow>
+                      {appointments.slice(0, 5).map((appointments, i) => (
+                        <TableRow key={i}>
                           <TableCell>
                             <div className="font-medium">{appointments.patientName}</div>
                             <div className="hidden text-sm text-muted-foreground md:inline">
@@ -148,8 +148,8 @@ export default async function Dashboard() {
                   <CardDescription>Pacientes recentes.</CardDescription>
                 </CardHeader>
                 <CardContent className="grid gap-8">
-                  {patients.map((patient) => (
-                    <div className="flex items-center gap-4">
+                  {patients.map((patient, i) => (
+                    <div className="flex items-center gap-4" key={i}>
                       <Avatar className="hidden h-9 w-9 sm:flex">
                         <AvatarImage
                           src={`https://api.dicebear.com/9.x/lorelei/svg?seed=${patient.phone}`}
