@@ -41,6 +41,7 @@ import { getPatients } from "./patients/actions";
 
 export default async function Dashboard() {
   const { user } = await validateRequest();
+
   const appointments = await getAppointments();
   const patients = await getPatients();
 

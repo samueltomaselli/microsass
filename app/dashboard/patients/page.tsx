@@ -8,24 +8,33 @@ import { DataTable } from "@/components/homemade/tables/patients-table/data-tabl
 import AddModal from "@/components/homemade/add-appointments-modal";
 import { getPatients } from "./actions";
 import AddPatientsModal from "@/components/homemade/add-patients-modal";
+import { validateRequest } from "@/lib/validate-request";
+import { redirect } from "next/navigation";
 
 export default async function Appointments() {
+  const { user } = await validateRequest();
   const patients = await getPatients();
 
   return (
-    <div>
-      <Card className="border-none shadow-none">
-        <CardHeader className="flex flex-row justify-between">
-          <div>
-            <CardTitle>Pacientes</CardTitle>
-            <CardDescription>Lista de pacientes.</CardDescription>
-          </div>
-          <div className="flex gap items-center justify-center gap-2">
-            <AddPatientsModal />
-          </div>
-        </CardHeader>
-        <DataTable columns={columns} data={patients} />
-      </Card>
-    </div>
+    <>
+      {user ? (
+        <div>
+          <Card className="border-none shadow-none">
+            <CardHeader className="flex flex-row justify-between">
+              <div>
+                <CardTitle>Pacientes</CardTitle>
+                <CardDescription>Lista de pacientes.</CardDescription>
+              </div>
+              <div className="flex gap items-center justify-center gap-2">
+                <AddPatientsModal />
+              </div>
+            </CardHeader>
+            <DataTable columns={columns} data={patients} />
+          </Card>
+        </div>
+      ) : (
+        redirect("/login")
+      )}
+    </>
   );
 }
