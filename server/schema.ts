@@ -35,8 +35,8 @@ export const patientTable = pgTable("patient", {
 
 export const appointmentTable = pgTable("appointment", {
   id: text("id").primaryKey(),
-  type: text("type").notNull(),
-  title: text("title").notNull(),
+  type: text("type"),
+  title: text("title"),
   userId: text("user_id")
     .notNull()
     .references(() => userTable.id),
@@ -44,8 +44,7 @@ export const appointmentTable = pgTable("appointment", {
     withTimezone: true,
     mode: "date",
   }).notNull(),
-  time: text("time").notNull(),
-  description: text("description").notNull(),
+  description: text("description"),
   patientId: text("patient_id")
     .notNull()
     .references(() => patientTable.id),

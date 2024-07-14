@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm";
 import { validateRequest } from "@/lib/validate-request";
 import { db } from "@/server/db";
 import { patientTable } from "@/server/schema";
+import { format } from "date-fns";
 
 export async function getPatients() {
   const { session } = await validateRequest();
@@ -17,5 +18,10 @@ export async function getPatients() {
     .from(patientTable)
     .where(eq(patientTable.userId, session.userId));
 
-  return patients;
+  const formattedPatients = patients.map((patient) => ({
+    ...patient,
+    createdAt: patient.createdAt ? format(new Date(patient.createdAt), "dd/MM/yyyy HH:mm") : null,
+  }));
+
+  return formattedPatients;
 }

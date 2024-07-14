@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { logout } from "@/app/dashboard/actions";
+import { ModeToggle } from "./mode-toggle";
 
 function Header() {
   return (
@@ -29,7 +30,10 @@ function Header() {
         >
           Consultas
         </Link>
-        <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+        <Link
+          href="/dashboard/patients"
+          className="text-muted-foreground transition-colors hover:text-foreground"
+        >
           Pacientes
         </Link>
         <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
@@ -78,6 +82,7 @@ function Header() {
             />
           </div>
         </form>
+        <ModeToggle />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="secondary" size="icon" className="rounded-full">

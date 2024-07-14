@@ -22,7 +22,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
@@ -49,6 +49,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { getPatients } from "@/server/actions/getPatients";
+import { Patient } from "@/types/types";
+import { addAppointments, getAppointments } from "@/app/dashboard/appointments/actions";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -88,35 +90,6 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
         />
 
         <div className="flex items-center gap-5">
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant="default">Adicionar</Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Adicionar consulta</AlertDialogTitle>
-                <AlertDialogDescription className="flex flex-col gap-4">
-                  <Input placeholder="Title" className="w-full" value="" />
-                  <Input placeholder="Description" className="w-full" value="" />
-                  <Select>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Theme" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="light">Light</SelectItem>
-                      <SelectItem value="dark">Dark</SelectItem>
-                      <SelectItem value="system">System</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Input placeholder="Nome" className="w-full" value="" />
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction>Continue</AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">
@@ -187,7 +160,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Próximo
+            Anterior
           </Button>
           <Button
             variant="outline"
@@ -195,7 +168,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Anterior
+            Próximo
           </Button>
         </div>
       </div>
