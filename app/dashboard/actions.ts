@@ -14,6 +14,7 @@ export async function logout() {
   }
 
   await lucia.invalidateSession(session.id);
+  await lucia.deleteExpiredSessions();
 
   const sessionCookie = lucia.createBlankSessionCookie();
   cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
