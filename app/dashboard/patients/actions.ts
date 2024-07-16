@@ -21,7 +21,7 @@ export async function getPatients() {
 
   const formattedPatients = patients.map((patient) => ({
     ...patient,
-    createdAt: patient.createdAt ? format(new Date(patient.createdAt), "dd/MM/yyyy HH:mm") : null,
+    createdAt: patient.createdAt ? format(new Date(patient.createdAt), "HH:mm | dd/MM/yyyy") : null,
   }));
 
   return formattedPatients;

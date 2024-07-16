@@ -20,6 +20,7 @@ import {
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Patient } from "@/types/types";
+import InputMask from "react-input-mask";
 import { addPatients } from "@/app/dashboard/patients/actions";
 
 export default function AddPatientsModal() {
@@ -42,8 +43,11 @@ export default function AddPatientsModal() {
               <AlertDialogTitle>Adicionar consulta</AlertDialogTitle>
               <AlertDialogDescription className="flex flex-col gap-4">
                 <Input placeholder="Nome" name="name" className="w-full" />
+
                 <Input placeholder="E-mail" name="email" className="w-full" />
-                <Input placeholder="Telefone" name="phone" className="w-full" />
+                <InputMask mask="(99) 99999-9999">
+                  <Input placeholder="Telefone" name="phone" className="w-full mb-3" />
+                </InputMask>
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>

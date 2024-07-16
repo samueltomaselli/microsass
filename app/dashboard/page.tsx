@@ -162,7 +162,6 @@ export default async function Dashboard() {
                         <p className="text-sm font-medium leading-none">{patient.name}</p>
                         <p className="text-sm text-muted-foreground">{patient.email}</p>
                       </div>
-                      <div className="ml-auto font-medium">+R$1,999.00</div>
                     </div>
                   ))}
                 </CardContent>

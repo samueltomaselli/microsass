@@ -33,6 +33,21 @@ export const columns: ColumnDef<Appointment>[] = [
     accessorKey: "description",
     header: "Descrição",
   },
+
+  {
+    accessorKey: "date",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Data
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
   {
     id: "actions",
     cell: ({ row }) => {
@@ -47,9 +62,9 @@ export const columns: ColumnDef<Appointment>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuLabel>Ações</DropdownMenuLabel>
             <DropdownMenuItem onClick={() => navigator.clipboard.writeText(appointment.id)}>
-              Copy appointment ID
+              Copiar ID da consulta
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => deleteAppointments(appointment.id)}>
@@ -57,20 +72,6 @@ export const columns: ColumnDef<Appointment>[] = [
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      );
-    },
-  },
-  {
-    accessorKey: "date",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Date
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
       );
     },
   },

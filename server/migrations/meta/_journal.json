@@ -36,6 +36,13 @@
       "when": 1720756971134,
       "tag": "0004_far_dakota_north",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1721099543158,
+      "tag": "0005_chief_meteorite",
+      "breakpoints": true
     }
   ]
 }

@@ -68,6 +68,8 @@ export async function addAppointments(formData: FormData) {
 
   await db.insert(appointmentTable).values(newAppointment);
 
+  revalidatePath("/dashboard/appointments");
+
   return {
     message: "Appointment added successfully",
   };

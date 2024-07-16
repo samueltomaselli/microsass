@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { numeric, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export const userTable = pgTable("user", {
   id: text("id").primaryKey(),
@@ -48,4 +48,5 @@ export const appointmentTable = pgTable("appointment", {
   patientId: text("patient_id")
     .notNull()
     .references(() => patientTable.id),
+  value: text("value"),
 });

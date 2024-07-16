@@ -57,13 +57,14 @@ export const columns: ColumnDef<Patient>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuLabel>Ações</DropdownMenuLabel>
             <DropdownMenuItem onClick={() => navigator.clipboard.writeText(patient.id)}>
-              Copy patient ID
+              Copiar ID do paciente
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => deletePatients(patient.id)}>
               Deletar consulta
             </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => console.log("Edit")}>Editar</DropdownMenuItem>
             <DropdownMenuSeparator />
           </DropdownMenuContent>
         </DropdownMenu>
